@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Platform</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">E-Commerce</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Products
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+                            <li><a class="dropdown-item" href="{% url 'product_list_category' 'books' %}">Books</a></li>
+                            <li><a class="dropdown-item" href="{% url 'product_list_category' 'laptops' %}">Laptops</a></li>
+                            <li><a class="dropdown-item" href="{% url 'product_list_category' 'mobiles' %}">Mobile Devices</a></li>
+                            <li><a class="dropdown-item" href="{% url 'product_list_category' 'clothes' %}">Clothes</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="{% url 'cart' %}" class="btn btn-outline-light me-2">
+                        <i class="bi bi-cart"></i> Cart
+                    </a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}" class="btn btn-outline-light me-2">Profile</a>
+                        <a href="{% url 'logout' %}" class="btn btn-outline-light">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-outline-light me-2">Login</a>
+                        <a href="{% url 'register' %}" class="btn btn-outline-light">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to our E-Commerce Platform</h1>
+            <p class="lead">Find the best products at competitive prices.</p>
+            <hr class="my-4">
+            <p>Browse our categories to find what you're looking for.</p>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200?text=Books" class="card-img-top" alt="Books">
+                    <div class="card-body">
+                        <h5 class="card-title">Books</h5>
+                        <p class="card-text">Explore our collection of books from various genres.</p>
+                        <a href="{% url 'product_list_category' 'books' %}" class="btn btn-primary">Browse Books</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200?text=Laptops" class="card-img-top" alt="Laptops">
+                    <div class="card-body">
+                        <h5 class="card-title">Laptops</h5>
+                        <p class="card-text">Find the perfect laptop for your needs.</p>
+                        <a href="{% url 'product_list_category' 'laptops' %}" class="btn btn-primary">Browse Laptops</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200?text=Mobiles" class="card-img-top" alt="Mobile Devices">
+                    <div class="card-body">
+                        <h5 class="card-title">Mobile Devices</h5>
+                        <p class="card-text">Stay connected with our range of mobile devices.</p>
+                        <a href="{% url 'product_list_category' 'mobiles' %}" class="btn btn-primary">Browse Mobile Devices</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200?text=Clothes" class="card-img-top" alt="Clothes">
+                    <div class="card-body">
+                        <h5 class="card-title">Clothes</h5>
+                        <p class="card-text">Shop the latest fashion trends.</p>
+                        <a href="{% url 'product_list_category' 'clothes' %}" class="btn btn-primary">Browse Clothes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 py-3">
+        <div class="container text-center">
+            <p>&copy; 2023 E-Commerce Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

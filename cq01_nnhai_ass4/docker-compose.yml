@@ -1,0 +1,105 @@
+version: '3.8'
+
+services:
+  base:
+    build:
+      context: .
+      dockerfile: Dockerfile.base
+    image: ecommerce-base
+
+  gateway:
+    build: ./gateway_service
+    ports:
+      - "8000:8000"
+    depends_on:
+      - base
+
+  book:
+    build: ./book_service
+    ports:
+      - "8001:8001"
+    depends_on:
+      - base
+
+  cart:
+    build: ./cart_service
+    ports:
+      - "8002:8002"
+    depends_on:
+      - base
+
+  clothes:
+    build: ./clothes_service
+    ports:
+      - "8003:8003"
+    depends_on:
+      - base
+
+  customer:
+    build: ./customer_service
+    ports:
+      - "8004:8004"
+    depends_on:
+      - base
+
+  items:
+    build: ./items_service
+    ports:
+      - "8005:8005"
+    depends_on:
+      - base
+
+  laptop:
+    build: ./laptop_service
+    ports:
+      - "8006:8006"
+    depends_on:
+      - base
+
+  mobile:
+    build: ./mobile_service
+    ports:
+      - "8007:8007"
+    depends_on:
+      - base
+
+  order:
+    build: ./order_service
+    ports:
+      - "8008:8008"
+    depends_on:
+      - base
+
+  paying:
+    build: ./paying_service
+    ports:
+      - "8009:8009"
+    depends_on:
+      - base
+
+  rating:
+    build: ./rating_service
+    ports:
+      - "8010:8010"
+    depends_on:
+      - base
+
+  shipping:
+    build: ./shipping_service
+    ports:
+      - "8011:8011"
+    depends_on:
+      - base
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  celery:
+    build: .
+    command: celery -A ecommerce worker -l info
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
